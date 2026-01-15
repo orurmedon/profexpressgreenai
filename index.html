@@ -3,31 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>L'Iceberg Numérique - Module Pédagogique</title>
+    <title>GreenGen | Audit IA</title>
     <link rel="stylesheet" href="style/main.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <header id="dashboard">
-        <div class="metric">
-            <span>💡 Innovation</span>
-            <div class="progress-bar"><div id="bar-innovation" style="width: 0%"></div></div>
+    <aside>
+        <div class="brand">🌿 GreenGen OS</div>
+        
+        <div class="metric-container">
+            <div class="metric-label"><span>💡 Innovation</span> <span id="val-inno">0%</span></div>
+            <div class="progress-track"><div id="bar-innovation" class="progress-fill"></div></div>
         </div>
-        <div class="metric">
-            <span>☁️ CO2</span>
-            <div class="progress-bar"><div id="bar-co2" style="width: 0%"></div></div>
+
+        <div class="metric-container">
+            <div class="metric-label"><span>☁️ Empreinte CO2</span> <span id="val-co2">0%</span></div>
+            <div class="progress-track"><div id="bar-co2" class="progress-fill"></div></div>
         </div>
-        <div class="metric">
-            <span>💧 Eau</span>
-            <div class="progress-bar"><div id="bar-water" style="width: 0%"></div></div>
+
+        <div class="metric-container">
+            <div class="metric-label"><span>💧 Eau (Refroidissement)</span> <span id="val-water">0%</span></div>
+            <div class="progress-track"><div id="bar-water" class="progress-fill"></div></div>
         </div>
-    </header>
+    </aside>
 
     <main id="app">
-        <div id="loading">Chargement du module...</div>
-    </main>
+        </main>
+
+    <button id="chat-toggle">💬</button>
+    <div id="chatbot-widget">
+        <div class="chat-header">
+            <span>Assistant GreenIT (Gemma 3)</span>
+            <span onclick="toggleChat()" style="cursor:pointer">✖</span>
+        </div>
+        <div class="chat-body" id="chat-messages">
+            <div class="msg bot">Bonjour. Je suis une IA sobre. Une question sur l'impact de vos choix ?</div>
+        </div>
+        <div class="chat-input-area">
+            <input type="text" id="chat-input" placeholder="Posez votre question...">
+            <button onclick="sendMessage()">➤</button>
+        </div>
+    </div>
 
     <script src="scripts/app.js"></script>
+    <script src="scripts/chatbot.js"></script>
 </body>
 </html>

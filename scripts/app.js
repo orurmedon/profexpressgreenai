@@ -1,20 +1,14 @@
 let gameData = {};
 let currentStep = 0;
-let metrics = {
-    innovation: 10,
-    co2: 10,
-    water: 10
-};
+let metrics = { innovation: 10, co2: 10, water: 10 };
 
-// Initialisation
 document.addEventListener('DOMContentLoaded', () => {
     fetch('assets/content.json')
         .then(response => response.json())
         .then(data => {
             gameData = data;
             initGame();
-        })
-        .catch(err => console.error("Erreur de chargement du contenu:", err));
+        });
 });
 
 function initGame() {
@@ -22,28 +16,45 @@ function initGame() {
     renderIntro();
 }
 
-// Mise à jour de l'affichage des jauges
+// Fonction avancée pour gérer l'aspect visuel des jauges
 function updateDashboard() {
-    document.getElementById('bar-innovation').style.width = metrics.innovation + '%';
-    document.getElementById('bar-co2').style.width = metrics.co2 + '%';
-    document.getElementById('bar-water').style.width = metrics.water + '%';
+    updateSingleBar('bar-innovation', 'val-inno', metrics.innovation, false); // false = plus c'est haut, mieux c'est
+    updateSingleBar('bar-co2', 'val-co2', metrics.co2, true);       // true = plus c'est haut, pire c'est (danger)
+    updateSingleBar('bar-water', 'val-water', metrics.water, true);
+}
 
-    // Changement d'ambiance si pollution élevée
-    if (metrics.co2 > 50 || metrics.water > 50) {
-        document.body.classList.add('polluted');
+function updateSingleBar(barId, textId, value, isDangerMetric) {
+    const bar = document.getElementById(barId);
+    const text = document.getElementById(textId);
+    
+    // 1. Mise à jour de la largeur
+    bar.style.width = value + '%';
+    text.innerText = value + '%';
+
+    // 2. Gestion des couleurs et classes d'état
+    bar.className = 'progress-fill'; // Reset classes
+    
+    if (isDangerMetric) {
+        if (value < 40) {
+            bar.classList.add('safe');  // Vert/Bleu
+        } else if (value < 75) {
+            bar.classList.add('warning'); // Orange
+        } else {
+            bar.classList.add('critical'); // Rouge + Clignotement
+        }
     } else {
-        document.body.classList.remove('polluted');
+        // Pour l'innovation, c'est l'inverse ou juste une couleur constante "Tech"
+        bar.classList.add('tech'); 
     }
 }
 
-// Affichage de l'intro
 function renderIntro() {
     const app = document.getElementById('app');
     app.innerHTML = `
-        <div class="card">
+        <div class="glass-card fade-in">
             <h1>${gameData.intro.title}</h1>
             <p>${gameData.intro.text}</p>
-            <button onclick="startGame()">${gameData.intro.button}</button>
+            <button onclick="startGame()" style="margin-top:20px; width:100%">${gameData.intro.button}</button>
         </div>
     `;
 }
@@ -53,108 +64,106 @@ function startGame() {
     renderScenario();
 }
 
-// Moteur principal : Affiche le scénario en cours
 function renderScenario() {
-    if (currentStep >= gameData.scenarios.length) {
-        renderConclusion();
-        return;
-    }
-
+    if (currentStep >= gameData.scenarios.length) { renderConclusion(); return; }
+    
     const scenario = gameData.scenarios[currentStep];
     const app = document.getElementById('app');
 
-    // Construction HTML dynamique
-    let html = `
-        <div class="card">
-            <h2>Dossier #${scenario.id} : ${scenario.title}</h2>
+    // On utilise ici l'image définie dans le JSON
+    // Astuce : on ajoute un fallback (onerror) si l'image n'existe pas
+    const imageHTML = scenario.image ? 
+        `<div class="img-container fade-in">
+            <img src="${scenario.image}" alt="Illustration" onerror="this.style.display='none'">
+         </div>` : '';
+
+    app.innerHTML = `
+        <div class="glass-card slide-up">
+            <div class="header-row">
+                <small>DOSSIER ${scenario.id} / ${gameData.scenarios.length}</small>
+                <span class="tag">CONFIDENTIEL</span>
+            </div>
             
+            <h2>${scenario.title}</h2>
+            
+            ${imageHTML}
+
             <div class="ceo-request">
+                <span class="avatar">CEO</span>
                 "${scenario.ceo_request}"
             </div>
-
-            <img src="${scenario.image}" class="illustration" onerror="this.style.display='none'" alt="Illustration">
-
-            <div class="theory-box">
-                <div class="theory-title">Notion Clé : ${scenario.theory.concept}</div>
-                <p><strong>Définition :</strong> ${scenario.theory.definition}</p>
-                <p><strong>Analogie :</strong> ${scenario.theory.analogie}</p>
-                <p><em>${scenario.theory.so_what}</em></p>
+            
+            <div class="theory-block">
+                <strong>⚡ Concept Clé : ${scenario.theory.concept}</strong>
+                <p>${scenario.theory.definition}</p>
             </div>
 
-            <div class="btn-group">
+            <div class="choices">
                 ${scenario.choices.map((choice, index) => `
-                    <button onclick="makeChoice(${index})">
-                        ${choice.text}
-                    </button>
+                    <button onclick="makeChoice(${index})">${choice.text}</button>
                 `).join('')}
             </div>
         </div>
     `;
-
-    app.innerHTML = html;
 }
 
-// Gestion du clic sur un choix
-window.makeChoice = function(choiceIndex) {
+window.makeChoice = function(index) {
     const scenario = gameData.scenarios[currentStep];
-    const choice = scenario.choices[choiceIndex];
-
-    // Mise à jour des métriques
-    metrics.innovation += choice.impact.innovation;
-    metrics.co2 += choice.impact.co2;
-    metrics.water += choice.impact.water;
-
-    // Bornage des valeurs (0-100)
-    metrics.innovation = Math.max(0, Math.min(100, metrics.innovation));
-    metrics.co2 = Math.max(0, Math.min(100, metrics.co2));
-    metrics.water = Math.max(0, Math.min(100, metrics.water));
-
+    const choice = scenario.choices[index];
+    
+    // Mise à jour des scores avec bornage 0-100
+    metrics.innovation = Math.min(100, Math.max(0, metrics.innovation + choice.impact.innovation));
+    metrics.co2 = Math.min(100, Math.max(0, metrics.co2 + choice.impact.co2));
+    metrics.water = Math.min(100, Math.max(0, metrics.water + choice.impact.water));
+    
     updateDashboard();
+    
+    // Feedback
+    document.getElementById('app').innerHTML = `
+        <div class="glass-card fade-in" style="text-align:center">
+            <div style="font-size:3rem; margin-bottom:1rem">
+                ${choice.impact.co2 > 15 ? '⚠️' : '✅'}
+            </div>
+            <h3>Analyse d'Impact</h3>
+            <p>${choice.feedback}</p>
+            
+            <div class="impact-summary">
+                <span>Innovation: ${choice.impact.innovation > 0 ? '+' : ''}${choice.impact.innovation}</span>
+                <span style="color:${choice.impact.co2 > 10 ? '#e74c3c' : '#2ecc71'}">CO2: +${choice.impact.co2}</span>
+            </div>
 
-    // Feedback immédiat avant de passer à la suite
-    showFeedback(choice.feedback);
-};
-
-function showFeedback(text) {
-    const app = document.getElementById('app');
-    app.innerHTML = `
-        <div class="card">
-            <h3>Analyse de votre décision</h3>
-            <p>${text}</p>
-            <button onclick="nextStep()">Dossier Suivant</button>
+            <button onclick="nextStep()" style="width:100%; margin-top:20px">Dossier Suivant ➤</button>
         </div>
     `;
 }
 
-function nextStep() {
-    currentStep++;
-    renderScenario();
-}
+window.nextStep = function() { currentStep++; renderScenario(); }
 
 function renderConclusion() {
-    const app = document.getElementById('app');
-    let message = "";
+    let title = "Audit Terminé";
+    let msg = "";
     
-    // Logique simple de victoire/défaite
-    if (metrics.co2 < 60 && metrics.water < 60 && metrics.innovation > 40) {
-        message = gameData.conclusion.success;
+    if (metrics.co2 > 80 || metrics.water > 80) {
+        title = "❌ Désastre Écologique";
+        msg = "Votre technologie est avancée, mais la planète est à genoux.";
+    } else if (metrics.innovation < 40) {
+        title = "❌ Faillite Technique";
+        msg = "L'empreinte est faible, mais votre produit est obsolète.";
     } else {
-        message = gameData.conclusion.failure;
+        title = "🏆 Équilibre Atteint";
+        msg = "Bravo ! Vous avez concilié innovation et responsabilité (Green IT).";
     }
 
-    app.innerHTML = `
-        <div class="card">
-            <h1>Audit Terminé</h1>
-            <p>${message}</p>
-            <div class="theory-box">
-                <p>Score Final :</p>
-                <ul>
-                    <li>Innovation : ${metrics.innovation}/100</li>
-                    <li>CO2 : ${metrics.co2}/100</li>
-                    <li>Eau : ${metrics.water}/100</li>
-                </ul>
+    document.getElementById('app').innerHTML = `
+        <div class="glass-card fade-in">
+            <h1>${title}</h1>
+            <p>${msg}</p>
+            <div class="final-scores">
+                <div>Innov: ${metrics.innovation}%</div>
+                <div>CO2: ${metrics.co2}%</div>
+                <div>Eau: ${metrics.water}%</div>
             </div>
-            <button onclick="location.reload()">${gameData.conclusion.restart}</button>
+            <button onclick="location.reload()">Recommencer l'Audit</button>
         </div>
     `;
 }
