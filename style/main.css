@@ -597,56 +597,70 @@ button:hover {
 }
 
 /* --- VUE LECTEUR (Lesson Content) --- */
+
+/* 1. Centrage global de la page de cours */
+#lesson-container {
+    max-width: 1000px; /* Largeur maximale de lecture confortable */
+    margin: 0 auto;    /* La clé du centrage : marges auto à gauche et droite */
+    padding-bottom: 4rem;
+}
+
 .lesson-header {
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
     border-bottom: 1px solid rgba(255,255,255,0.1);
-    padding-bottom: 1rem;
+    padding-bottom: 2rem;
+    text-align: center; /* Titre centré c'est plus joli */
 }
 
 .back-link {
-    background: none;
-    border: none;
+    display: inline-block;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
     color: var(--text-muted);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    margin-bottom: 1.5rem;
     cursor: pointer;
-    font-size: 1rem;
-    padding: 0;
-    margin-bottom: 1rem;
-    text-align: left;
+    transition: all 0.2s;
 }
-.back-link:hover { color: white; text-decoration: underline; }
+.back-link:hover { background: var(--primary-green); color: white; border-color: transparent; }
 
-/* Structure d'une sous-section : ZigZag ou Colonnes */
+/* 2. Layout de la leçon : Texte à Gauche | Image à Droite */
 .subsection {
-    display: grid;
-    grid-template-columns: 1.5fr 1fr; /* Texte large, Image */
-    gap: 2rem;
-    margin-bottom: 3rem;
-    align-items: center;
+    display: flex;       /* Utilisation de Flexbox plus souple que Grid ici */
+    flex-direction: row; /* Ligne par défaut : Texte puis Image */
+    align-items: flex-start; /* Alignement en haut */
+    gap: 3rem;           /* Espace entre texte et image */
+    margin-bottom: 4rem;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.03); /* Fond très léger pour détacher la section */
+    border-radius: 16px;
+    border: 1px solid rgba(255,255,255,0.05);
 }
 
-/* Alterner l'image gauche/droite pour le dynamisme (Optionnel, ici standard) */
+.subsection-text {
+    flex: 1; /* Le texte prend tout l'espace disponible */
+    min-width: 300px; /* Évite que le texte soit trop écrasé */
+}
 
 .subsection-text h3 {
     color: var(--primary-green);
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     margin-top: 0;
+    margin-bottom: 1.5rem;
 }
 
-.subsection-text p {
-    line-height: 1.8; /* Lecture confortable */
-    font-size: 1.05rem;
-    color: #e0e0e0;
-}
-
+/* 3. Gestion de l'Image à Droite */
 .subsection-visual {
-    height: 300px;
+    flex: 0 0 350px; /* Largeur fixe pour l'image : 350px */
+    height: 350px;   /* Carré ou rectangle fixe */
     background: rgba(0,0,0,0.2);
     border-radius: 12px;
     overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    position: sticky; /* L'image reste visible si le texte est long */
+    top: 20px;
     border: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
 }
 
 .subsection-visual img {
@@ -655,60 +669,27 @@ button:hover {
     object-fit: cover;
     transition: transform 0.5s;
 }
-
 .subsection-visual:hover img { transform: scale(1.05); }
 
-/* Placeholder si pas d'image */
-.img-placeholder {
-    color: rgba(255,255,255,0.3);
-    font-weight: bold;
-    font-size: 1.2rem;
-    text-transform: uppercase;
-    border: 2px dashed rgba(255,255,255,0.2);
-    padding: 2rem;
-    border-radius: 10px;
-}
-
-/* Footer de navigation */
-.lesson-footer {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 4rem;
-    padding-top: 2rem;
-    border-top: 1px solid rgba(255,255,255,0.1);
-}
-
-.next-chapter-btn {
-    background: var(--primary-green);
-    color: white;
-    padding: 1rem 2rem;
-    font-size: 1.1rem;
-    border: none;
-    border-radius: 50px; /* Bouton pilule */
-    cursor: pointer;
-    transition: transform 0.2s;
-    box-shadow: 0 5px 15px rgba(0, 176, 155, 0.4);
-}
-
-.next-chapter-btn:hover {
-    transform: translateX(5px);
-}
-
-.finish-btn {
-    background: linear-gradient(90deg, #f1c40f, #e67e22);
-    box-shadow: 0 5px 15px rgba(230, 126, 34, 0.4);
-}
-
-/* Responsive Mobile */
+/* --- RESPONSIVE (Mobile) --- */
 @media (max-width: 900px) {
     .subsection {
-        grid-template-columns: 1fr; /* Image passe sous le texte */
+        flex-direction: column; /* On empile verticalement */
     }
+
+    .subsection-text {
+        order: 1; /* Le texte reste en PREMIER */
+        width: 100%;
+    }
+
     .subsection-visual {
-        order: -1; /* Image au dessus du texte sur mobile ? ou laisser en bas */
-        height: 200px;
+        order: 2; /* L'image passe EN DESSOUS du texte */
+        width: 100%;
+        height: 250px; /* Moins haut sur mobile */
+        margin-top: 2rem;
+        position: static; /* Plus de sticky sur mobile */
     }
-} 
+}
 /* --- STYLE DU CONTENU MARKDOWN --- */
 .md-content {
     line-height: 1.8;
