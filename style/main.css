@@ -811,4 +811,87 @@ button:hover {
     color: var(--text-muted);
     margin-top: 0.5rem;
     line-height: 1.4;
+} 
+
+/* Correction du layout de la vue Accueil */
+#view-home.active {
+    display: flex;             /* Active Flexbox */
+    flex-direction: column;    /* Colonne */
+    justify-content: center;   /* Centre verticalement */
+    align-items: center;       /* Centre horizontalement */
+    min-height: 100vh;         /* Prend toute la hauteur de l'écran */
+    position: relative;        /* Pour positionner le fond */
+    overflow: hidden;          /* Empêche les scrollbars si les feuilles sortent */
+    padding: 2rem;
+}
+
+.hero-card {
+    z-index: 10;               /* Passe par-dessus les feuilles */
+    width: 100%;
+    max-width: 1000px;         /* Limite la largeur pour que ce soit joli */
+    text-align: center;
+    margin: 0 auto;            /* Sécurité pour le centrage */
+    background: rgba(15, 32, 39, 0.7); /* Un peu plus sombre pour la lisibilité */
+    backdrop-filter: blur(20px); /* Flou important pour l'effet verre */
+}
+/* --- AMBIANCE GREEN IT (Background Animé) --- */
+
+.nature-bg {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none; /* Laisse passer les clics */
+    z-index: 1;
+    overflow: hidden;
+}
+
+/* 1. LES FEUILLES QUI TOMBENT */
+.leaf {
+    position: absolute;
+    top: -50px;
+    width: 30px; height: 30px;
+    background: var(--primary-green);
+    border-radius: 0 50% 0 50%; /* Forme de feuille simple */
+    opacity: 0.3;
+    animation: falling linear infinite;
+}
+
+/* Variations pour rendre ça naturel (Randomisation CSS) */
+.leaf:nth-child(1) { left: 10%; animation-duration: 15s; animation-delay: 0s; transform: scale(0.8); }
+.leaf:nth-child(2) { left: 30%; animation-duration: 25s; animation-delay: 5s; transform: scale(0.5); background: var(--accent-blue); }
+.leaf:nth-child(3) { left: 70%; animation-duration: 18s; animation-delay: 2s; transform: scale(1.1); }
+.leaf:nth-child(4) { left: 90%; animation-duration: 22s; animation-delay: 8s; transform: scale(0.7); }
+.leaf:nth-child(5) { left: 50%; animation-duration: 30s; animation-delay: 12s; transform: scale(0.9); opacity: 0.1; }
+.leaf:nth-child(6) { left: 20%; animation-duration: 20s; animation-delay: 15s; transform: scale(0.6); background: #f1c40f; }
+
+@keyframes falling {
+    0% {
+        top: -50px;
+        transform: translateX(0) rotate(0deg);
+        opacity: 0;
+    }
+    20% { opacity: 0.4; }
+    50% { opacity: 0.4; }
+    100% {
+        top: 110vh; /* Sort de l'écran en bas */
+        transform: translateX(100px) rotate(360deg); /* Dérive vers la droite et tourne */
+        opacity: 0;
+    }
+}
+
+/* 2. LES VAGUES EN BAS (SVG CSS) */
+.wave {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 200%; /* Plus large pour bouger */
+    height: 150px;
+    background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg"><path fill="%2300b09b" fill-opacity="0.1" d="M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,224C672,245,768,267,864,261.3C960,256,1056,224,1152,197.3C1248,171,1344,149,1392,138.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+    background-size: 50% 100%; /* Répétition fluide */
+    animation: waveMove 20s linear infinite;
+    z-index: 0;
+}
+
+@keyframes waveMove {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
 }
