@@ -14,7 +14,7 @@
       "id": 1,
       "title": "Le Résumé Automatique",
       "ceo_request": "Nos utilisateurs ont la flemme de lire. Je veux une IA qui résume leurs notes automatiquement. On lance ça ?",
-      "image": "assets/data/inference.png",
+      "image": "assets/data/inference.jpg",
       "theory": {
         "concept": "Inférence vs Entraînement",
         "definition": "L'inférence est le coût énergétique de l'utilisation du modèle, pas de sa création.",
@@ -38,7 +38,7 @@
       "id": 2,
       "title": "La Génération d'Images",
       "ceo_request": "Je veux que les utilisateurs puissent générer des couvertures de dossiers en 4K avec des dragons !",
-      "image": "assets/data/gpu_heat.png",
+      "image": "assets/data/gpu_heat.jpg",
       "theory": {
         "concept": "Coût Matériel & Eau",
         "definition": "La génération d'images demande un calcul intensif (GPU) qui surchauffe les serveurs.",
@@ -62,7 +62,7 @@
       "id": 3,
       "title": "Le Chatbot H24",
       "ceo_request": "Remplaçons le SAV par une IA qui répond instantanément, tout le temps.",
-      "image": "assets/data/datacenter.png",
+      "image": "assets/data/datacenter.jpg",
       "theory": {
         "concept": "L'Effet Rebond (Paradoxe de Jevons)",
         "definition": "Plus une technologie est efficace et accessible, plus on l'utilise, annulant les gains d'efficacité.",
