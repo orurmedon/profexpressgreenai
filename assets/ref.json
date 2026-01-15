@@ -1,0 +1,106 @@
+{
+  "intro": {
+    "title": "La Bibliothèque Verte",
+    "subtitle": "Pour aller plus loin : sources, preuves et outils."
+  },
+  "categories": [
+    {
+      "id": "science",
+      "title": "Littérature Scientifique",
+      "icon": "🔬",
+      "description": "Les papiers de recherche fondateurs sur l'impact de l'IA.",
+      "links": [
+        {
+          "label": "Energy and Policy Considerations for Deep Learning in NLP",
+          "author": "Strubell et al. (2019)",
+          "url": "https://arxiv.org/abs/1906.02243",
+          "note": "L'étude choc qui a révélé l'équivalent CO2 de l'entraînement de modèles (5 voitures)."
+        },
+        {
+          "label": "Estimating the Carbon Footprint of BLOOM",
+          "author": "Luccioni et al. (2022)",
+          "url": "https://arxiv.org/abs/2211.02001",
+          "note": "Analyse complète du cycle de vie d'un modèle Open Source."
+        },
+        {
+          "label": "Green AI",
+          "author": "Schwartz et al. (2019)",
+          "url": "https://arxiv.org/abs/1907.10597",
+          "note": "Le papier qui propose de passer de la 'Red AI' (performance à tout prix) à la 'Green AI'."
+        }
+      ]
+    },
+    {
+      "id": "video",
+      "title": "Vidéos & Documentaires",
+      "icon": "▶️",
+      "description": "Comprendre les enjeux en images.",
+      "links": [
+        {
+          "label": "Comment ChatGPT assoiffe la planète",
+          "author": "Hugo Décrypte / Le Monde",
+          "url": "https://www.youtube.com/watch?v=LNoklk0NRmQ",
+          "note": "Enquête sur la consommation d'eau des Data Centers."
+        },
+        {
+          "label": "Le Numérique : Notre meilleur allié ou pire ennemi ?",
+          "author": "Jean-Marc Jancovici",
+          "url": "https://www.youtube.com/watch?v=wXNTtXzm_qw",
+          "note": "Conférence sur les limites physiques du numérique."
+        },
+        {
+          "label": "Guerre des métaux rares : La face cachée",
+          "author": "Guillaume Pitron (Arte)",
+          "url": "https://www.youtube.com/watch?v=9p5t4d6g5s",
+          "note": "Documentaire sur l'extraction minière nécessaire au hardware."
+        }
+      ]
+    },
+    {
+      "id": "press",
+      "title": "Articles de Presse",
+      "icon": "📰",
+      "description": "Analyses et tribunes grand public.",
+      "links": [
+        {
+          "label": "Generative AI’s environmental costs are soaring",
+          "author": "Nature",
+          "url": "https://www.nature.com/articles/d41586-024-00478-x",
+          "note": "Pourquoi la demande en eau et en énergie explose avec les LLMs."
+        },
+        {
+          "label": "L'IA générative, un gouffre énergétique ?",
+          "author": "CNRS Le Journal",
+          "url": "https://lejournal.cnrs.fr/articles/lia-generative-un-gouffre-energetique",
+          "note": "Le point de vue de la recherche française."
+        }
+      ]
+    },
+    {
+      "id": "actors",
+      "title": "Acteurs du Green IT",
+      "icon": "🌿",
+      "description": "Ceux qui construisent des outils de mesure.",
+      "links": [
+        {
+          "label": "Boavizta",
+          "author": "Association",
+          "url": "https://boavizta.org/",
+          "note": "Base de données ouverte sur l'impact de fabrication des serveurs."
+        },
+        {
+          "label": "CodeCarbon",
+          "author": "Outil Open Source",
+          "url": "https://codecarbon.io/",
+          "note": "Python package pour tracker ses émissions en codant."
+        },
+        {
+          "label": "The Green Web Foundation",
+          "author": "ONG",
+          "url": "https://www.thegreenwebfoundation.org/",
+          "note": "Pour vérifier si un hébergeur utilise de l'énergie verte."
+        }
+      ]
+    }
+  ]
+}

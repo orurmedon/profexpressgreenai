@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,21 +8,28 @@
     <link rel="stylesheet" href="style/main.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
     <aside id="sidebar">
         <div class="brand">🌿 GreenGen OS</div>
         <div class="metric-container">
             <div class="metric-label"><span>💡 Innovation</span> <span id="val-inno">0%</span></div>
-            <div class="progress-track"><div id="bar-innovation" class="progress-fill"></div></div>
+            <div class="progress-track">
+                <div id="bar-innovation" class="progress-fill"></div>
+            </div>
         </div>
         <div class="metric-container">
             <div class="metric-label"><span>☁️ CO2</span> <span id="val-co2">0%</span></div>
-            <div class="progress-track"><div id="bar-co2" class="progress-fill"></div></div>
+            <div class="progress-track">
+                <div id="bar-co2" class="progress-fill"></div>
+            </div>
         </div>
         <div class="metric-container">
             <div class="metric-label"><span>💧 Eau</span> <span id="val-water">0%</span></div>
-            <div class="progress-track"><div id="bar-water" class="progress-fill"></div></div>
+            <div class="progress-track">
+                <div id="bar-water" class="progress-fill"></div>
+            </div>
         </div>
         <button onclick="router('home')" style="margin-top:auto; background:rgba(255,255,255,0.1)">Quitter</button>
     </aside>
@@ -44,6 +52,10 @@
                         <div class="icon">🎮</div>
                         <h3>3. La Mission</h3>
                     </div>
+                    <div class="menu-item" onclick="router('ref')">
+                        <div class="icon">🔍</div>
+                        <h3>4. Ressources</h3>
+                    </div>
                 </div>
             </div>
         </section>
@@ -59,7 +71,10 @@
         </section>
 
         <section id="view-game" class="view-section">
-            <div id="app"></div> 
+            <div id="app"></div>
+        </section>
+        <section id="view-ref" class="view-section">
+            <div id="ref-container" class="container-width"></div>
         </section>
     </main>
 
@@ -74,17 +89,22 @@
     </div>
     <button id="chat-toggle">💬</button>
     <div id="chatbot-widget">
-        <div class="chat-header"><span>Assistant GreenIT</span><span onclick="toggleChat()" style="cursor:pointer">✖</span></div>
-        <div class="chat-body" id="chat-messages"><div class="msg bot">Besoin d'aide ?</div></div>
+        <div class="chat-header"><span>Assistant GreenIT</span><span onclick="toggleChat()"
+                style="cursor:pointer">✖</span></div>
+        <div class="chat-body" id="chat-messages">
+            <div class="msg bot">Besoin d'aide ?</div>
+        </div>
         <div class="chat-input-area"><input type="text" id="chat-input"><button onclick="sendMessage()">➤</button></div>
     </div>
 
-    
+
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="scripts/ref.js"></script>
     <script src="scripts/quizz.js"></script>
     <script src="scripts/lesson.js"></script>
     <script src="scripts/app.js"></script>
     <script src="scripts/chatbot.js"></script>
     <script src="scripts/main.js"></script>
 </body>
+
 </html>

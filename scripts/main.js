@@ -26,4 +26,8 @@ window.router = function(viewName) {
             window.initGame(); 
         }
     }
+    // --- AJOUT ICI ---
+    else if (viewName === 'ref') {
+        if (typeof window.startRef === 'function') startRef();
+    }
 };
