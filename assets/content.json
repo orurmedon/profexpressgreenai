@@ -14,7 +14,7 @@
       "id": 1,
       "title": "Le Résumé Automatique",
       "ceo_request": "Nos utilisateurs ont la flemme de lire. Je veux une IA qui résume leurs notes automatiquement. On lance ça ?",
-      "image": "assets/data/inference.png",
+      "image": "assets/data/inference.jpg",
       "theory": {
         "concept": "Inférence vs Entraînement",
         "definition": "L'inférence est le coût énergétique de l'utilisation du modèle, pas de sa création.",
@@ -38,7 +38,7 @@
       "id": 2,
       "title": "La Génération d'Images",
       "ceo_request": "Je veux que les utilisateurs puissent générer des couvertures de dossiers en 4K avec des dragons !",
-      "image": "assets/data/gpu_heat.png",
+      "image": "assets/data/gpu_heat.jpg",
       "theory": {
         "concept": "Coût Matériel & Eau",
         "definition": "La génération d'images demande un calcul intensif (GPU) qui surchauffe les serveurs.",
@@ -62,7 +62,7 @@
       "id": 3,
       "title": "Le Chatbot H24",
       "ceo_request": "Remplaçons le SAV par une IA qui répond instantanément, tout le temps.",
-      "image": "assets/data/datacenter.png",
+      "image": "assets/data/datacenter.jpg",
       "theory": {
         "concept": "L'Effet Rebond (Paradoxe de Jevons)",
         "definition": "Plus une technologie est efficace et accessible, plus on l'utilise, annulant les gains d'efficacité.",
@@ -86,7 +86,7 @@
       "id": 4,
       "title": "Le Renouvellement Matériel",
       "ceo_request": "Nos serveurs ont 3 ans. Ils fonctionnent encore, mais les nouveaux sont 15% plus rapides. On change tout ?",
-      "image": "assets/data/hardware.png",
+      "image": "assets/data/hardware.jpg",
       "theory": {
         "concept": "Dette Grise (Fabrication)",
         "definition": "La majorité de l'empreinte carbone d'un appareil numérique provient de sa fabrication, pas de son utilisation électrique.",
@@ -110,7 +110,7 @@
       "id": 5,
       "title": "Le Stockage des Données",
       "ceo_request": "On a des millions de vieux logs utilisateurs d'il y a 5 ans. On garde tout 'au cas où' on voudrait réentraîner une IA ?",
-      "image": "assets/data/storage.png",
+      "image": "assets/data/storage.jpg",
       "theory": {
         "concept": "Dark Data",
         "definition": "Les données stockées inutilement consomment de l'espace disque et de l'électricité 24h/24.",
@@ -134,7 +134,7 @@
       "id": 6,
       "title": "L'Optimisation du Code",
       "ceo_request": "Les développeurs veulent coder vite en Python sans optimiser. Le temps c'est de l'argent, non ?",
-      "image": "assets/data/code.png",
+      "image": "assets/data/code.jpg",
       "theory": {
         "concept": "Green Coding",
         "definition": "Un code mal optimisé oblige le processeur à travailler plus longtemps pour le même résultat.",
@@ -158,7 +158,7 @@
       "id": 7,
       "title": "Réinventer la Roue ?",
       "ceo_request": "Pour notre système de reconnaissance vocale, on entraîne notre propre modèle de A à Z ou on adapte un existant ?",
-      "image": "assets/data/training.png",
+      "image": "assets/data/training.jpg",
       "theory": {
         "concept": "Transfer Learning (Fine-tuning)",
         "definition": "Réutiliser un modèle pré-entraîné et l'ajuster coûte infiniment moins cher que de partir de zéro.",
@@ -182,7 +182,7 @@
       "id": 8,
       "title": "IA pour tout ?",
       "ceo_request": "Ajoutons une IA pour trier la liste des contacts par ordre alphabétique. Ça fait moderne !",
-      "image": "assets/data/code.png",
+      "image": "assets/data/code.jpg",
       "theory": {
         "concept": "Sobriété Fonctionnelle",
         "definition": "Utiliser l'IA pour des tâches algorithmiques simples est une aberration énergétique.",
