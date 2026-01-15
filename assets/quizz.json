@@ -1,0 +1,69 @@
+{
+  "questions": [
+    {
+      "question": "Quelle étape du cycle de vie d'un smartphone pollue le plus ?",
+      "choices": ["La fabrication", "L'utilisation (recharge)", "Le transport"],
+      "correct": 0,
+      "explanation": "La fabrication représente 80% de l'impact carbone à cause de l'extraction des métaux rares."
+    },
+    {
+      "question": "Combien d'eau consomme environ une conversation de 20 questions avec ChatGPT ?",
+      "choices": ["1 centilitre", "50 centilitres", "10 litres"],
+      "correct": 1,
+      "explanation": "Le refroidissement des data centers évapore environ 50cl d'eau pour ce type d'échange."
+    },
+    {
+      "question": "Qu'est-ce qu'un 'Dark Data' ?",
+      "choices": ["Une donnée piratée", "Une donnée stockée mais jamais utilisée", "Une donnée cryptée"],
+      "correct": 1,
+      "explanation": "Ce sont des données (logs, vieux emails) qui consomment de l'énergie de stockage pour rien."
+    },
+    {
+      "question": "Quelle est la part du numérique dans les émissions mondiales de gaz à effet de serre ?",
+      "choices": ["Moins de 1%", "3 à 4% (plus que l'aviation)", "10%"],
+      "correct": 1,
+      "explanation": "Le numérique polluent désormais plus que l'aviation civile mondiale."
+    },
+    {
+      "question": "Pourquoi regarder une vidéo en 4K sur un smartphone est une aberration écologique ?",
+      "choices": ["L'écran est trop petit pour voir la différence", "Ça use l'écran", "Ça fait mal aux yeux"],
+      "correct": 0,
+      "explanation": "L'oeil humain ne distingue pas la 4K sur 6 pouces, mais le poids des données est quadruplé."
+    },
+    {
+      "question": "Quel est le moyen le plus efficace pour réduire son empreinte numérique ?",
+      "choices": ["Vider sa corbeille mail", "Garder ses appareils le plus longtemps possible", "Utiliser le mode sombre"],
+      "correct": 1,
+      "explanation": "Allonger la durée de vie divise l'impact de fabrication par le nombre d'années."
+    },
+    {
+      "question": "L'Intelligence Artificielle générative (IA) nécessite des puces spécifiques appelées :",
+      "choices": ["CPU", "GPU", "USB"],
+      "correct": 1,
+      "explanation": "Les GPU (processeurs graphiques) sont très puissants mais très énergivores."
+    },
+    {
+      "question": "Qu'est-ce que l'effet Rebond (Paradoxe de Jevons) ?",
+      "choices": ["Plus c'est efficace, moins on consomme", "Plus c'est efficace, plus on consomme", "Ça n'existe pas"],
+      "correct": 1,
+      "explanation": "Les gains d'efficacité sont annulés par l'augmentation massive des usages."
+    },
+    {
+      "question": "Où est-il préférable d'héberger ses données pour le climat ?",
+      "choices": ["En Virginie (USA)", "En Pologne", "En France ou Suède"],
+      "correct": 2,
+      "explanation": "Grâce aux mix électriques décarbonés (Nucléaire ou Hydraulique) de ces pays."
+    },
+    {
+      "question": "Le 'Cloud' (Nuage) est composé de :",
+      "choices": ["Vapeur d'eau", "Satellites", "Câbles sous-marins et Data Centers"],
+      "correct": 2,
+      "explanation": "C'est une infrastructure physique lourde faite de béton, de cuivre et de silicium."
+    }
+  ],
+  "results": {
+    "bad": "Score : {score}/10. Vous êtes un 'Pollueur Numérique'. Il est urgent de suivre le cours !",
+    "average": "Score : {score}/10. 'Utilisateur Conscient'. Vous avez les bases, mais des lacunes subsistent.",
+    "good": "Score : {score}/10. 'Expert Green IT'. Vous êtes prêt pour la simulation !"
+  }
+}

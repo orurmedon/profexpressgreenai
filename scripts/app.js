@@ -1,18 +1,28 @@
 let gameData = {};
 let currentStep = 0;
 let metrics = { innovation: 10, co2: 10, water: 10 };
+// ... variables globales ... (gameData, metrics, etc.)
 
-document.addEventListener('DOMContentLoaded', () => {
-    fetch('assets/content.json')
-        .then(response => response.json())
-        .then(data => {
-            gameData = data;
-            initGame();
-        });
-    
-    // Création dynamique du HTML de la modale au démarrage
-    createModalHTML();
-});
+// Exposer la fonction initGame globalement pour main.js
+window.initGame = function() {
+    // On ne fetch qu'une seule fois
+    if (!gameData.scenarios) {
+        fetch('assets/content.json')
+            .then(response => response.json())
+            .then(data => {
+                gameData = data;
+                updateDashboard();
+                renderIntro(); // Fonction du jeu
+            });
+    } else {
+        // Si déjà chargé, on reset juste l'affichage si besoin
+        updateDashboard();
+    }
+};
+
+// ... Le reste du code (updateDashboard, renderScenario, etc.) reste identique ...
+// Assurez-vous que renderIntro écrit bien dans document.getElementById('game-container') 
+// OU que votre index.html a un <div id="app"> à l'intérieur de la section #view-game.
 
 function createModalHTML() {
     const modalHTML = `

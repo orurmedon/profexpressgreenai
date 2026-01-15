@@ -1,0 +1,54 @@
+{
+  "chapters": [
+    {
+      "title": "1. Le Matériel : Le Poids Invisible",
+      "points": [
+        "Le Sac à Dos Écologique : 800kg de matières pour un laptop de 2kg.",
+        "L'Extraction : Terres rares et conflits géopolitiques.",
+        "La Fabrication : 80% de l'impact carbone total.",
+        "La Fin de Vie : Seuls 20% des déchets électroniques sont recyclés.",
+        "Action : Garder ses équipements 5 ans au lieu de 2."
+      ]
+    },
+    {
+      "title": "2. L'Infrastructure : Le Cloud est en Béton",
+      "points": [
+        "Data Centers : Des usines qui consomment autant qu'une petite ville.",
+        "Le Réseau : Câbles sous-marins et antennes 5G.",
+        "Le Refroidissement : Consommation massive d'eau potable.",
+        "L'Intensité Carbone : L'importance de la géographie (Charbon vs Hydro).",
+        "Action : Choisir des hébergeurs locaux et verts."
+      ]
+    },
+    {
+      "title": "3. L'Intelligence Artificielle : Géant aux pieds d'argile",
+      "points": [
+        "Entraînement : Des mois de calculs énergivores (Coût unique).",
+        "Inférence : L'énergie de chaque question posée (Coût récurrent).",
+        "Modèles Larges (LLM) vs Petits Modèles : Le problème du surdimensionnement.",
+        "Génération d'images : Le coût caché du 'Wow'.",
+        "Action : N'utiliser l'IA que quand c'est nécessaire."
+      ]
+    },
+    {
+      "title": "4. Les Usages : La Sobriété Numérique",
+      "points": [
+        "Vidéo : 60% du trafic mondial. Adapter la résolution à l'écran.",
+        "4G vs Wifi : Le Wifi consomme beaucoup moins d'énergie.",
+        "Dark Data : Supprimer ce qui ne sert plus.",
+        "Obsolescence Logicielle : Les mises à jour qui ralentissent les vieux appareils.",
+        "Action : Désactiver la lecture automatique (Autoplay)."
+      ]
+    },
+    {
+      "title": "5. Éthique & Futur",
+      "points": [
+        "Effet Rebond : L'efficacité technique ne suffit pas sans sobriété.",
+        "Design de l'Attention : Comment les apps nous rendent accros.",
+        "Impact Social : Conditions de travail dans les mines.",
+        "Réglementations : Vers un score carbone obligatoire ?",
+        "Conclusion : La technologie est un outil, pas une fin."
+      ]
+    }
+  ]
+}

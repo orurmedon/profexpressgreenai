@@ -456,4 +456,102 @@ button:hover {
     .visual-column { height: 200px; }
 }
 
-/* Garder le reste du CSS (Glassmorphism, Sidebar...) identique au précédent */
+/* GESTION DES VUES */
+.view-section {
+    display: none; /* Caché par défaut */
+    width: 100%;
+    height: 100%;
+    padding: 2rem;
+    overflow-y: auto;
+    animation: fadeIn 0.5s;
+}
+
+.view-section.active {
+    display: block; /* Visible si actif */
+}
+
+/* SIDEBAR CACHÉE PAR DÉFAUT */
+#sidebar {
+    display: none; 
+}
+#sidebar.active {
+    display: flex; /* Visible uniquement en mode game */
+}
+
+/* MENU GRID */
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.menu-item {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--glass-border);
+    padding: 2rem;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-align: center;
+}
+
+.menu-item:hover {
+    background: rgba(0, 176, 155, 0.2);
+    transform: translateY(-10px);
+    border-color: var(--primary-green);
+}
+
+.menu-item .icon { font-size: 3rem; margin-bottom: 1rem; }
+
+/* QUIZ STYLES */
+.centered-content {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.choice-btn {
+    display: block;
+    width: 100%;
+    margin: 1rem 0;
+    background: rgba(0,0,0,0.2);
+    text-align: left;
+    padding: 1.2rem;
+}
+
+.choice-btn:hover { background: var(--primary-green); }
+
+.score-circle {
+    font-size: 3rem;
+    font-weight: bold;
+    color: var(--primary-green);
+    border: 4px solid var(--primary-green);
+    border-radius: 50%;
+    width: 100px; height: 100px;
+    display: flex; align-items: center; justify-content: center;
+    margin: 2rem auto;
+}
+
+/* LESSON STYLES */
+.lesson-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.lesson-card ul {
+    text-align: left;
+    padding-left: 1.2rem;
+    color: #ddd;
+}
+
+.lesson-card li { margin-bottom: 0.5rem; }
+
+/* Utilitaires */
+.cta-btn {
+    background: linear-gradient(90deg, var(--primary-green), var(--accent-blue));
+    padding: 1.2rem 3rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+}

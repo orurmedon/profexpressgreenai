@@ -3,50 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GreenGen | Audit IA</title>
+    <title>GreenGen Academy</title>
     <link rel="stylesheet" href="style/main.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <aside>
+    <aside id="sidebar">
         <div class="brand">🌿 GreenGen OS</div>
-        
         <div class="metric-container">
             <div class="metric-label"><span>💡 Innovation</span> <span id="val-inno">0%</span></div>
             <div class="progress-track"><div id="bar-innovation" class="progress-fill"></div></div>
         </div>
-
         <div class="metric-container">
-            <div class="metric-label"><span>☁️ Empreinte CO2</span> <span id="val-co2">0%</span></div>
+            <div class="metric-label"><span>☁️ CO2</span> <span id="val-co2">0%</span></div>
             <div class="progress-track"><div id="bar-co2" class="progress-fill"></div></div>
         </div>
-
         <div class="metric-container">
-            <div class="metric-label"><span>💧 Eau (Refroidissement)</span> <span id="val-water">0%</span></div>
+            <div class="metric-label"><span>💧 Eau</span> <span id="val-water">0%</span></div>
             <div class="progress-track"><div id="bar-water" class="progress-fill"></div></div>
         </div>
+        <button onclick="router('home')" style="margin-top:auto; background:rgba(255,255,255,0.1)">Quitter</button>
     </aside>
 
-    <main id="app">
-        </main>
+    <main>
+        
+        <section id="view-home" class="view-section active">
+            <div class="glass-card hero-card fade-in">
+                <h1>Bienvenue à la GreenGen Academy</h1>
+                <p>Maîtrisez l'impact environnemental du numérique en 3 étapes.</p>
+                
+                <div class="menu-grid">
+                    <div class="menu-item" onclick="router('quizz')">
+                        <div class="icon">📝</div>
+                        <h3>1. Le Test</h3>
+                        <p>Évaluez vos connaissances actuelles.</p>
+                    </div>
+                    <div class="menu-item" onclick="router('lesson')">
+                        <div class="icon">📚</div>
+                        <h3>2. Le Cours</h3>
+                        <p>Comprenez les mécanismes cachés.</p>
+                    </div>
+                    <div class="menu-item" onclick="router('game')">
+                        <div class="icon">🎮</div>
+                        <h3>3. La Mission</h3>
+                        <p>Prenez les commandes d'une Start-up.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="view-quizz" class="view-section">
+            <div id="quizz-container" class="container-width"></div>
+        </section>
+
+        <section id="view-lesson" class="view-section">
+            <h1>Les 5 Piliers du Green IT</h1>
+            <div id="lesson-container"></div>
+            <button onclick="router('home')" class="back-btn">Retour Menu</button>
+        </section>
+
+        <section id="view-game" class="view-section">
+            <div id="app"></div> 
+        </section>
+
+    </main>
 
     <button id="chat-toggle">💬</button>
     <div id="chatbot-widget">
-        <div class="chat-header">
-            <span>Assistant GreenIT (Gemma 3)</span>
-            <span onclick="toggleChat()" style="cursor:pointer">✖</span>
-        </div>
-        <div class="chat-body" id="chat-messages">
-            <div class="msg bot">Bonjour. Je suis une IA sobre. Une question sur l'impact de vos choix ?</div>
-        </div>
-        <div class="chat-input-area">
-            <input type="text" id="chat-input" placeholder="Posez votre question...">
-            <button onclick="sendMessage()">➤</button>
-        </div>
+        <div class="chat-header"><span>Assistant GreenIT</span><span onclick="toggleChat()" style="cursor:pointer">✖</span></div>
+        <div class="chat-body" id="chat-messages"><div class="msg bot">Besoin d'aide ?</div></div>
+        <div class="chat-input-area"><input type="text" id="chat-input"><button onclick="sendMessage()">➤</button></div>
     </div>
 
+    <script src="scripts/quizz.js"></script>
+    <script src="scripts/lesson.js"></script>
     <script src="scripts/app.js"></script>
     <script src="scripts/chatbot.js"></script>
-</body>
+    <script src="scripts/main.js"></script> </body>
 </html>
