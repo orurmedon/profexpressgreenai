@@ -1,0 +1,91 @@
+{
+  "config": {
+    "max_co2": 100,
+    "max_water": 100,
+    "min_innovation": 0
+  },
+  "intro": {
+    "title": "Bienvenue chez GreenGen",
+    "text": "Vous êtes le nouvel Auditeur Junior. Votre mission : aider la CEO à intégrer l'IA sans détruire la planète. Attention à vos jauges : l'Innovation doit monter, mais le CO2 et l'Eau doivent rester sous contrôle.",
+    "button": "Commencer l'audit"
+  },
+  "scenarios": [
+    {
+      "id": 1,
+      "title": "Le Résumé Automatique",
+      "ceo_request": "Nos utilisateurs ont la flemme de lire. Je veux une IA qui résume leurs notes automatiquement. On lance ça ?",
+      "image": "assets/data/inference.png",
+      "theory": {
+        "concept": "Inférence vs Entraînement",
+        "definition": "L'inférence est le coût énergétique de l'utilisation du modèle, pas de sa création.",
+        "analogie": "L'entraînement, c'est construire l'autoroute (coût unique élevé). L'inférence, c'est chaque voiture qui roule dessus (coût faible, mais multiplié par des millions).",
+        "so_what": "Pour une fonction simple utilisée par tous, l'inférence cumulée peut dépasser le coût d'entraînement."
+      },
+      "choices": [
+        {
+          "text": "Utiliser un LLM géant (GPT-4) pour tout résumer.",
+          "feedback": "C'est comme prendre un avion de chasse pour aller acheter du pain. Trop énergivore pour un simple résumé.",
+          "impact": { "innovation": 20, "co2": 40, "water": 10 }
+        },
+        {
+          "text": "Utiliser un petit modèle spécialisé (SLM) optimisé.",
+          "feedback": "Excellent choix. Le modèle est moins 'intelligent' mais suffit largement pour résumer, et consomme 50x moins.",
+          "impact": { "innovation": 15, "co2": 5, "water": 2 }
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "La Génération d'Images",
+      "ceo_request": "Je veux que les utilisateurs puissent générer des couvertures de dossiers en 4K avec des dragons !",
+      "image": "assets/data/gpu_heat.png",
+      "theory": {
+        "concept": "Coût Matériel & Eau",
+        "definition": "La génération d'images demande un calcul intensif (GPU) qui surchauffe les serveurs.",
+        "analogie": "C'est l'équivalent de faire tourner un four à pyrolyse pour chaque image. Il faut refroidir ce four avec de l'eau.",
+        "so_what": "Une image générée = une charge complète de smartphone. Est-ce utile pour décorer un dossier ?"
+      },
+      "choices": [
+        {
+          "text": "Validé ! C'est trop cool.",
+          "feedback": "L'impact est désastreux. L'eau potable utilisée pour refroidir les serveurs manque aux populations locales.",
+          "impact": { "innovation": 25, "co2": 30, "water": 50 }
+        },
+        {
+          "text": "Refusé. Proposons une banque d'images vectorielles légères.",
+          "feedback": "Choix sobre. Moins 'wow', mais infiniment plus durable.",
+          "impact": { "innovation": -5, "co2": 0, "water": 0 }
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Le Chatbot H24",
+      "ceo_request": "Remplaçons le SAV par une IA qui répond instantanément, tout le temps.",
+      "image": "assets/data/datacenter.png",
+      "theory": {
+        "concept": "L'Effet Rebond (Paradoxe de Jevons)",
+        "definition": "Plus une technologie est efficace et accessible, plus on l'utilise, annulant les gains d'efficacité.",
+        "analogie": "Depuis que les moteurs consomment moins, on roule plus et on achète des voitures plus grosses.",
+        "so_what": "Un chatbot efficace risque d'augmenter le nombre de requêtes inutiles."
+      },
+      "choices": [
+        {
+          "text": "OK, mais on héberge ça en Norvège (Hydroélectricité).",
+          "feedback": "Bon réflexe ! L'emplacement du serveur change tout au bilan carbone (mix énergétique décarboné).",
+          "impact": { "innovation": 15, "co2": 5, "water": 10 }
+        },
+        {
+          "text": "OK, hébergement standard (USA/Virginie).",
+          "feedback": "Mauvaise idée. La Virginie fonctionne encore beaucoup au charbon/gaz.",
+          "impact": { "innovation": 15, "co2": 35, "water": 20 }
+        }
+      ]
+    }
+  ],
+  "conclusion": {
+    "success": "Mission Accomplie ! Vous avez trouvé l'équilibre entre progrès et sobriété.",
+    "failure": "Échec critique. Votre application est innovante, mais l'environnement est saccagé.",
+    "restart": "Recommencer l'audit"
+  }
+}
