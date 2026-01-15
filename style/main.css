@@ -349,4 +349,111 @@ button:hover {
     background: rgba(0,0,0,0.3);
     padding: 10px;
     border-radius: 8px;
+} 
+
+/* --- LAYOUT BIFACE (Split Screen) --- */
+.scenario-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Image Gauche | Texte Droite */
+    gap: 2rem;
+    height: 100%;
+    align-items: center;
 }
+
+/* Zone Image (Gauche) */
+.visual-column {
+    position: relative;
+    height: 400px;
+    background: rgba(0,0,0,0.2);
+    border-radius: 16px;
+    border: 1px solid var(--glass-border);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.visual-column img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1s ease;
+}
+
+.visual-column:hover img {
+    transform: scale(1.05);
+}
+
+/* Zone Texte (Droite) */
+.content-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* --- MODALE (Popup) --- */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.85); /* Fond très sombre */
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.modal-content {
+    background: linear-gradient(135deg, #1e2a33, #0f2027);
+    border: 2px solid var(--primary-green);
+    padding: 2.5rem;
+    border-radius: 20px;
+    max-width: 500px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 0 50px rgba(0, 176, 155, 0.2);
+    transform: scale(0.8);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.modal-overlay.active .modal-content {
+    transform: scale(1);
+}
+
+.modal-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.impact-row {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+    font-weight: bold;
+    font-family: monospace;
+    font-size: 1.1rem;
+    background: rgba(0,0,0,0.3);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+/* Ajustements Responsive */
+@media (max-width: 900px) {
+    .scenario-grid {
+        grid-template-columns: 1fr; /* Une seule colonne sur mobile */
+        grid-template-rows: auto auto;
+    }
+    .visual-column { height: 200px; }
+}
+
+/* Garder le reste du CSS (Glassmorphism, Sidebar...) identique au précédent */

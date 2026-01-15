@@ -9,52 +9,58 @@ document.addEventListener('DOMContentLoaded', () => {
             gameData = data;
             initGame();
         });
+    
+    // Création dynamique du HTML de la modale au démarrage
+    createModalHTML();
 });
+
+function createModalHTML() {
+    const modalHTML = `
+        <div id="feedback-modal" class="modal-overlay">
+            <div class="modal-content">
+                <span id="modal-icon" class="modal-icon"></span>
+                <h2 id="modal-title">Analyse</h2>
+                <p id="modal-text"></p>
+                <div id="modal-impact" class="impact-row"></div>
+                <button onclick="closeModalAndNext()" style="width:100%">Continuer</button>
+            </div>
+        </div>
+    `;
+    document.body.insertAdjacentHTML('beforeend', modalHTML);
+}
 
 function initGame() {
     updateDashboard();
     renderIntro();
 }
 
-// Fonction avancée pour gérer l'aspect visuel des jauges
 function updateDashboard() {
-    updateSingleBar('bar-innovation', 'val-inno', metrics.innovation, false); // false = plus c'est haut, mieux c'est
-    updateSingleBar('bar-co2', 'val-co2', metrics.co2, true);       // true = plus c'est haut, pire c'est (danger)
+    updateSingleBar('bar-innovation', 'val-inno', metrics.innovation, false);
+    updateSingleBar('bar-co2', 'val-co2', metrics.co2, true);
     updateSingleBar('bar-water', 'val-water', metrics.water, true);
 }
 
-function updateSingleBar(barId, textId, value, isDangerMetric) {
+function updateSingleBar(barId, textId, value, isDanger) {
     const bar = document.getElementById(barId);
-    const text = document.getElementById(textId);
-    
-    // 1. Mise à jour de la largeur
+    document.getElementById(textId).innerText = value + '%';
     bar.style.width = value + '%';
-    text.innerText = value + '%';
-
-    // 2. Gestion des couleurs et classes d'état
-    bar.className = 'progress-fill'; // Reset classes
+    bar.className = 'progress-fill';
     
-    if (isDangerMetric) {
-        if (value < 40) {
-            bar.classList.add('safe');  // Vert/Bleu
-        } else if (value < 75) {
-            bar.classList.add('warning'); // Orange
-        } else {
-            bar.classList.add('critical'); // Rouge + Clignotement
-        }
+    if (isDanger) {
+        if (value < 40) bar.classList.add('safe');
+        else if (value < 75) bar.classList.add('warning');
+        else bar.classList.add('critical');
     } else {
-        // Pour l'innovation, c'est l'inverse ou juste une couleur constante "Tech"
-        bar.classList.add('tech'); 
+        bar.classList.add('tech');
     }
 }
 
 function renderIntro() {
-    const app = document.getElementById('app');
-    app.innerHTML = `
-        <div class="glass-card fade-in">
+    document.getElementById('app').innerHTML = `
+        <div class="glass-card fade-in" style="text-align:center; max-width:600px; margin:auto;">
             <h1>${gameData.intro.title}</h1>
             <p>${gameData.intro.text}</p>
-            <button onclick="startGame()" style="margin-top:20px; width:100%">${gameData.intro.button}</button>
+            <button onclick="startGame()" style="margin-top:2rem">Lancer</button>
         </div>
     `;
 }
@@ -64,106 +70,105 @@ function startGame() {
     renderScenario();
 }
 
+// Nouvelle fonction de Rendu : IMAGE GAUCHE | TEXTE DROITE
 function renderScenario() {
     if (currentStep >= gameData.scenarios.length) { renderConclusion(); return; }
     
     const scenario = gameData.scenarios[currentStep];
     const app = document.getElementById('app');
 
-    // On utilise ici l'image définie dans le JSON
-    // Astuce : on ajoute un fallback (onerror) si l'image n'existe pas
-    const imageHTML = scenario.image ? 
-        `<div class="img-container fade-in">
-            <img src="${scenario.image}" alt="Illustration" onerror="this.style.display='none'">
-         </div>` : '';
-
+    // Structure Grid
     app.innerHTML = `
-        <div class="glass-card slide-up">
-            <div class="header-row">
-                <small>DOSSIER ${scenario.id} / ${gameData.scenarios.length}</small>
-                <span class="tag">CONFIDENTIEL</span>
-            </div>
-            
-            <h2>${scenario.title}</h2>
-            
-            ${imageHTML}
+        <div class="glass-card fade-in" style="max-width:1000px; width:100%;">
+            <div class="scenario-grid">
+                
+                <div class="visual-column">
+                    <img src="${scenario.image}" onerror="this.src='https://via.placeholder.com/400x400?text=No+Image'">
+                    <div style="position:absolute; bottom:10px; left:10px; background:rgba(0,0,0,0.7); padding:5px 10px; border-radius:5px; font-size:0.8rem;">
+                        Situation ${scenario.id} / ${gameData.scenarios.length}
+                    </div>
+                </div>
 
-            <div class="ceo-request">
-                <span class="avatar">CEO</span>
-                "${scenario.ceo_request}"
-            </div>
-            
-            <div class="theory-block">
-                <strong>⚡ Concept Clé : ${scenario.theory.concept}</strong>
-                <p>${scenario.theory.definition}</p>
-            </div>
+                <div class="content-column">
+                    <h2 style="color:var(--primary-green)">${scenario.title}</h2>
+                    
+                    <div class="ceo-request">
+                        "${scenario.ceo_request}"
+                    </div>
 
-            <div class="choices">
-                ${scenario.choices.map((choice, index) => `
-                    <button onclick="makeChoice(${index})">${choice.text}</button>
-                `).join('')}
+                    <div style="margin-bottom:1.5rem; font-size:0.9rem; color:var(--text-muted)">
+                        <strong>💡 Savoir : ${scenario.theory.concept}</strong><br>
+                        ${scenario.theory.definition}
+                    </div>
+
+                    <div class="choices" style="flex-direction:column;">
+                        ${scenario.choices.map((choice, index) => `
+                            <button onclick="openModalChoice(${index})">${choice.text}</button>
+                        `).join('')}
+                    </div>
+                </div>
+
             </div>
         </div>
     `;
 }
 
-window.makeChoice = function(index) {
+// Ouverture de la Modale (au lieu de remplacer l'écran)
+window.openModalChoice = function(index) {
     const scenario = gameData.scenarios[currentStep];
     const choice = scenario.choices[index];
-    
-    // Mise à jour des scores avec bornage 0-100
-    metrics.innovation = Math.min(100, Math.max(0, metrics.innovation + choice.impact.innovation));
-    metrics.co2 = Math.min(100, Math.max(0, metrics.co2 + choice.impact.co2));
-    metrics.water = Math.min(100, Math.max(0, metrics.water + choice.impact.water));
-    
-    updateDashboard();
-    
-    // Feedback
-    document.getElementById('app').innerHTML = `
-        <div class="glass-card fade-in" style="text-align:center">
-            <div style="font-size:3rem; margin-bottom:1rem">
-                ${choice.impact.co2 > 15 ? '⚠️' : '✅'}
-            </div>
-            <h3>Analyse d'Impact</h3>
-            <p>${choice.feedback}</p>
-            
-            <div class="impact-summary">
-                <span>Innovation: ${choice.impact.innovation > 0 ? '+' : ''}${choice.impact.innovation}</span>
-                <span style="color:${choice.impact.co2 > 10 ? '#e74c3c' : '#2ecc71'}">CO2: +${choice.impact.co2}</span>
-            </div>
 
-            <button onclick="nextStep()" style="width:100%; margin-top:20px">Dossier Suivant ➤</button>
-        </div>
+    // Mise à jour des données
+    metrics.innovation = clamp(metrics.innovation + choice.impact.innovation);
+    metrics.co2 = clamp(metrics.co2 + choice.impact.co2);
+    metrics.water = clamp(metrics.water + choice.impact.water);
+    updateDashboard();
+
+    // Remplissage de la modale
+    const isBad = choice.impact.co2 > 10 || choice.impact.water > 10;
+    document.getElementById('modal-icon').innerText = isBad ? '⚠️' : '✅';
+    document.getElementById('modal-title').innerText = isBad ? 'Attention' : 'Bien joué';
+    document.getElementById('modal-title').style.color = isBad ? '#e74c3c' : '#2ecc71';
+    
+    document.getElementById('modal-text').innerText = choice.feedback;
+    
+    document.getElementById('modal-impact').innerHTML = `
+        <span style="color:${choice.impact.innovation > 0 ? '#3498db' : '#bdc3c7'}">Innov: ${choice.impact.innovation > 0 ? '+' : ''}${choice.impact.innovation}</span>
+        <span style="color:${choice.impact.co2 > 10 ? '#e74c3c' : '#2ecc71'}">CO2: ${choice.impact.co2 > 0 ? '+' : ''}${choice.impact.co2}</span>
     `;
+
+    // Affichage
+    document.getElementById('feedback-modal').classList.add('active');
 }
 
-window.nextStep = function() { currentStep++; renderScenario(); }
+window.closeModalAndNext = function() {
+    document.getElementById('feedback-modal').classList.remove('active');
+    // Petit délai pour laisser l'animation de fermeture se faire
+    setTimeout(() => {
+        currentStep++;
+        renderScenario();
+    }, 300);
+}
+
+function clamp(val) { return Math.min(100, Math.max(0, val)); }
 
 function renderConclusion() {
     let title = "Audit Terminé";
     let msg = "";
-    
-    if (metrics.co2 > 80 || metrics.water > 80) {
-        title = "❌ Désastre Écologique";
-        msg = "Votre technologie est avancée, mais la planète est à genoux.";
-    } else if (metrics.innovation < 40) {
-        title = "❌ Faillite Technique";
-        msg = "L'empreinte est faible, mais votre produit est obsolète.";
-    } else {
-        title = "🏆 Équilibre Atteint";
-        msg = "Bravo ! Vous avez concilié innovation et responsabilité (Green IT).";
-    }
+    if (metrics.co2 > 75 || metrics.water > 75) msg = "Échec : L'environnement est sacrifié.";
+    else if (metrics.innovation < 40) msg = "Échec : Manque d'innovation stratégique.";
+    else msg = "Succès : Vous avez trouvé la voie de l'IA Responsable !";
 
     document.getElementById('app').innerHTML = `
-        <div class="glass-card fade-in">
+        <div class="glass-card fade-in" style="text-align:center">
             <h1>${title}</h1>
             <p>${msg}</p>
-            <div class="final-scores">
-                <div>Innov: ${metrics.innovation}%</div>
-                <div>CO2: ${metrics.co2}%</div>
-                <div>Eau: ${metrics.water}%</div>
+            <div class="impact-row" style="justify-content:center">
+                <span>Innov: ${metrics.innovation}%</span>
+                <span>CO2: ${metrics.co2}%</span>
+                <span>Eau: ${metrics.water}%</span>
             </div>
-            <button onclick="location.reload()">Recommencer l'Audit</button>
+            <button onclick="location.reload()">Recommencer</button>
         </div>
     `;
 }
