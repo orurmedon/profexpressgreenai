@@ -1092,4 +1092,23 @@ button:hover {
         width: 50px;
         height: 50px;
     }
+} 
+
+.visual-column {
+    /* ... vos styles existants ... */
+    background-color: rgba(0,0,0,0.2); /* Fond gris en attendant l'image */
+    min-height: 200px; /* Garde la place même si l'image n'est pas là */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Petit effet de chargement fluide */
+.visual-column img {
+    opacity: 0;
+    animation: fadeInImg 0.5s ease forwards;
+}
+
+@keyframes fadeInImg {
+    to { opacity: 1; }
 }

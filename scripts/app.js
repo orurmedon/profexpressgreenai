@@ -4,19 +4,34 @@ let metrics = { innovation: 10, co2: 10, water: 10 };
 
 // 1. Initialisation (Appelé une seule fois par le Routeur main.js)
 window.initGame = function() {
-    console.log("Init Game...");
     if (!gameData.scenarios) {
         fetch('assets/content.json')
             .then(response => response.json())
             .then(data => {
                 gameData = data;
-                renderIntro(); // Affiche l'intro du jeu
+                
+                // --- AJOUT : PRÉCHARGEMENT ---
+                preloadImages(); 
+                // -----------------------------
+
+                renderIntro();
             })
             .catch(err => console.error("Erreur JSON:", err));
     } else {
         renderIntro();
     }
-};
+}; 
+
+// Nouvelle fonction magique pour la gestion d'image en cache 
+function preloadImages() {
+    console.log("Préchargement des images en arrière-plan...");
+    gameData.scenarios.forEach(scenario => {
+        if (scenario.image) {
+            const img = new Image();
+            img.src = scenario.image; // Le navigateur la télécharge et la garde en cache
+        }
+    });
+} ; 
 
 // 2. Affiche l'écran d'introduction de la mission
 function renderIntro() {
