@@ -596,80 +596,76 @@ button:hover {
     text-transform: uppercase;
 }
 
-/* --- VUE LECTEUR (Lesson Content) --- */
+/* --- VUE LECTEUR (Optimisée Pleine Page) --- */
 
-/* 1. Centrage global de la page de cours */
+/* 1. Conteneur large pour la lecture */
 #lesson-container {
-    max-width: 1000px; /* Largeur maximale de lecture confortable */
-    margin: 0 auto;    /* La clé du centrage : marges auto à gauche et droite */
-    padding-bottom: 4rem;
+    width: 90%;            /* Prend presque toute la largeur */
+    max-width: 1200px;     /* On évite quand même que les lignes fassent 2km de long sur grand écran */
+    margin: 0 auto;        /* Centré */
+    padding-bottom: 5rem;
 }
 
 .lesson-header {
-    margin-bottom: 3rem;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-    padding-bottom: 2rem;
-    text-align: center; /* Titre centré c'est plus joli */
-}
-
-.back-link {
-    display: inline-block;
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.1);
-    color: var(--text-muted);
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    margin-bottom: 1.5rem;
-    cursor: pointer;
-    transition: all 0.2s;
-}
-.back-link:hover { background: var(--primary-green); color: white; border-color: transparent; }
-
-/* 2. Layout de la leçon : Texte à Gauche | Image à Droite */
-.subsection {
-    display: flex;       /* Utilisation de Flexbox plus souple que Grid ici */
-    flex-direction: row; /* Ligne par défaut : Texte puis Image */
-    align-items: flex-start; /* Alignement en haut */
-    gap: 3rem;           /* Espace entre texte et image */
+    text-align: center;
     margin-bottom: 4rem;
-    padding: 2rem;
-    background: rgba(255, 255, 255, 0.03); /* Fond très léger pour détacher la section */
-    border-radius: 16px;
-    border: 1px solid rgba(255,255,255,0.05);
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
-.subsection-text {
-    flex: 1; /* Le texte prend tout l'espace disponible */
-    min-width: 300px; /* Évite que le texte soit trop écrasé */
-}
-
-.subsection-text h3 {
+.lesson-header h1 {
+    font-size: 3rem;
     color: var(--primary-green);
-    font-size: 1.6rem;
-    margin-top: 0;
-    margin-bottom: 1.5rem;
 }
 
-/* 3. Gestion de l'Image à Droite */
+/* 2. La Sous-Partie : Verticale et Spacieuse */
+.subsection {
+    display: block;        /* Plus de Flexbox horizontal */
+    margin-bottom: 5rem;   /* Gros espacement entre les sections */
+    background: transparent; /* On enlève le fond gris pour faire plus "clean" */
+    border: none;
+    padding: 0;
+}
+
+/* 3. L'Image : Bannière ou Bandeau (Discret mais présent) */
 .subsection-visual {
-    flex: 0 0 350px; /* Largeur fixe pour l'image : 350px */
-    height: 350px;   /* Carré ou rectangle fixe */
-    background: rgba(0,0,0,0.2);
-    border-radius: 12px;
+    width: 100%;
+    height: 250px;         /* Hauteur fixe style bannière */
+    border-radius: 16px;
     overflow: hidden;
-    position: sticky; /* L'image reste visible si le texte est long */
-    top: 20px;
+    margin-bottom: 2rem;   /* Espace entre l'image et le texte */
     border: 1px solid rgba(255,255,255,0.1);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
 }
 
 .subsection-visual img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s;
+    object-fit: cover;     /* Remplit la bannière proprement */
+    object-position: center;
 }
-.subsection-visual:hover img { transform: scale(1.05); }
+
+/* 4. Le Texte : Pleine largeur et lisible */
+.subsection-text {
+    width: 100%;
+}
+
+.subsection-text h3 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: #fff;
+    border-left: 5px solid var(--primary-green);
+    padding-left: 1rem;
+}
+
+/* Optimisation de la lecture Markdown */
+.md-content {
+    font-size: 1.2rem;     /* Texte plus gros */
+    line-height: 1.8;      /* Lignes aérées */
+    color: #ecf0f1;
+    max-width: 900px;      /* Le texte reste centré pour ne pas fatiguer l'œil */
+    margin: 0 auto;        /* Centrage du bloc de texte */
+}
 
 /* --- RESPONSIVE (Mobile) --- */
 @media (max-width: 900px) {
