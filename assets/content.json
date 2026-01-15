@@ -4,168 +4,234 @@
   },
   "intro": {
     "title": "Mission : GreenGen",
-    "text": "En tant qu'Auditeur Green IT, validez ou rejetez les demandes de la CEO. Votre but : Maximiser l'Innovation tout en gardant le CO2 et l'Eau dans le vert.",
+    "text": "Bienvenue chez GreenGen. Vous êtes l'Auditeur Responsable. Votre défi : valider les choix technologiques de la CEO pour innover sans brûler la planète. Attention : si le CO2 ou l'Eau atteignent 100%, c'est le Game Over.",
     "button": "Démarrer l'Audit"
   },
   "scenarios": [
     {
       "id": 1,
-      "title": "Le Moteur de Résumé",
+      "title": "Le Résumé Automatique",
       "image": "assets/data/inference.png",
-      "ceo_request": "On doit résumer les réunions. On lance le plus gros modèle disponible (70B) pour être sûr de la qualité ?",
+      "ceo_request": "Les élèves ont la flemme de lire les longs PDF. On lance un méga-modèle (GPT-4) pour tout résumer ?",
       "theory": {
         "concept": "Inférence & Sizing",
-        "definition": "Utiliser un modèle trop puissant pour une tâche simple gaspille de l'énergie (inférence inutilement lourde)."
+        "definition": "Utiliser un modèle trop 'intelligent' pour une tâche simple est un gaspillage immense d'énergie."
       },
       "choices": [
         {
-          "text": "Validé. La qualité prime.",
-          "feedback": "Gaspillage massif. Un modèle 70B pour du résumé, c'est comme livrer une pizza en semi-remorque.",
+          "text": "Validé. On veut le top du top.",
+          "feedback": "C'est comme prendre un avion de chasse pour aller chercher le pain. Trop énergivore pour un simple résumé.",
           "impact": { "innovation": 10, "co2": 25, "water": 10 }
         },
         {
-          "text": "Refusé. Prenons un 'Tiny Model' optimisé.",
-          "feedback": "Excellent. Les petits modèles spécialisés sont 50x moins énergivores pour un résultat identique.",
+          "text": "Non, un 'Petit Modèle' (SLM) suffit.",
+          "feedback": "Excellent. Un petit modèle spécialisé consomme 50x moins pour le même résultat sur du résumé.",
           "impact": { "innovation": 15, "co2": 5, "water": 2 }
         }
       ]
     },
     {
       "id": 2,
-      "title": "Les Serveurs 'Vintage'",
-      "image": "assets/data/hardware.png",
-      "ceo_request": "Nos serveurs ont 4 ans. Faut-il tous les changer pour les derniers modèles Nvidia super puissants ?",
-      "theory": {
-        "concept": "Dette Grise (Matériel)",
-        "definition": "70% de l'impact d'un serveur vient de sa fabrication (extraction minière), pas de son usage électrique."
-      },
-      "choices": [
-        {
-          "text": "Oui, achetons tout neuf !",
-          "feedback": "Désastreux. L'impact de fabrication (sac à dos écologique) explose votre bilan carbone.",
-          "impact": { "innovation": 20, "co2": 30, "water": 40 }
-        },
-        {
-          "text": "Non, prolongeons leur vie de 2 ans.",
-          "feedback": "Sage décision. Allonger la durée de vie du matériel est le levier écologique n°1.",
-          "impact": { "innovation": 5, "co2": 5, "water": 0 }
-        }
-      ]
-    },
-    {
-      "id": 3,
-      "title": "Génération d'Images",
+      "title": "La Folie des Images",
       "image": "assets/data/gpu_heat.png",
-      "ceo_request": "Ajoutons un bouton pour générer des images 4K décoratives dans chaque email envoyé.",
+      "ceo_request": "Je veux que chaque utilisateur puisse générer une mascotte 3D en 4K pour son profil. C'est fun, non ?",
       "theory": {
-        "concept": "Usage vs Utilité",
-        "definition": "Générer une image coûte autant d'énergie que charger un smartphone. L'usage doit justifier le coût."
+        "concept": "Coût de la Génération",
+        "definition": "Générer une image par IA consomme autant d'électricité que de recharger un smartphone entier."
       },
       "choices": [
         {
-          "text": "Trop cool ! On valide.",
-          "feedback": "Usage futile et polluant. Des milliers de smartphones chargés pour rien.",
-          "impact": { "innovation": 15, "co2": 25, "water": 25 }
+          "text": "Validé ! C'est trop cool.",
+          "feedback": "Catastrophe écologique. Des millions de smartphones 'chargés' pour des images jetables.",
+          "impact": { "innovation": 15, "co2": 30, "water": 40 }
         },
         {
-          "text": "Inutile. Option rejetée.",
-          "feedback": "Bien vu. La sobriété numérique, c'est aussi savoir dire non aux gadgets.",
+          "text": "Refusé. Banque d'images classiques.",
+          "feedback": "Choix sobre. Moins 'wow', mais infiniment plus durable pour de la déco.",
           "impact": { "innovation": -5, "co2": 0, "water": 0 }
         }
       ]
     },
     {
-      "id": 4,
-      "title": "Le Stockage des Données",
-      "image": "assets/data/storage.png",
-      "ceo_request": "On garde tous les logs et historiques utilisateurs depuis 10 ans 'au cas où' on voudrait réentraîner une IA ?",
+      "id": 3,
+      "title": "L'Assistant H24",
+      "image": "assets/data/datacenter.png",
+      "ceo_request": "Remplaçons la FAQ par un Chatbot IA qui s'ouvre tout seul dès qu'on arrive sur le site.",
       "theory": {
-        "concept": "Dark Data",
-        "definition": "Stocker des données inutiles consomme de l'électricité 24h/24 dans les Data Centers."
+        "concept": "Effet Rebond (Paradoxe de Jevons)",
+        "definition": "Rendre un service plus efficace et accessible augmente souvent sa consommation totale car on l'utilise plus."
       },
       "choices": [
         {
-          "text": "Gardons tout (Data Hoarding).",
-          "feedback": "Erreur. Ces 'Dark Data' consomment de l'espace et de l'énergie pour rien.",
-          "impact": { "innovation": 5, "co2": 15, "water": 5 }
+          "text": "Oui, maximisons l'engagement !",
+          "feedback": "Attention ! En poussant à la consommation inutile, vous explosez le nombre de requêtes serveurs.",
+          "impact": { "innovation": 20, "co2": 25, "water": 15 }
         },
         {
-          "text": "Supprimons les données > 2 ans.",
-          "feedback": "Parfait. Une politique de rétention stricte allège l'infrastructure.",
-          "impact": { "innovation": 0, "co2": -5, "water": 0 }
+          "text": "Non, IA à la demande (bouton d'aide).",
+          "feedback": "Bien joué. L'IA ne s'active que si l'utilisateur en a vraiment besoin.",
+          "impact": { "innovation": 10, "co2": 5, "water": 5 }
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Le Renouvellement Matériel",
+      "image": "assets/data/hardware.png",
+      "ceo_request": "Nos serveurs ont 3 ans. Ils marchent encore, mais les nouveaux sont 10% plus rapides. On change tout ?",
+      "theory": {
+        "concept": "Dette Grise (Fabrication)",
+        "definition": "80% de l'impact carbone d'un équipement numérique vient de sa fabrication (extraction minière), pas de son usage."
+      },
+      "choices": [
+        {
+          "text": "On change tout pour la performance.",
+          "feedback": "Erreur classique. Jeter du matériel fonctionnel est le pire crime écologique du numérique.",
+          "impact": { "innovation": 20, "co2": 40, "water": 30 }
+        },
+        {
+          "text": "On garde le matériel 2 ans de plus.",
+          "feedback": "La meilleure décision possible. Allonger la durée de vie divise l'impact par deux.",
+          "impact": { "innovation": 5, "co2": 0, "water": 0 }
         }
       ]
     },
     {
       "id": 5,
-      "title": "Localisation du Cloud",
+      "title": "Le Cloud, c'est où ?",
       "image": "assets/data/map.png",
-      "ceo_request": "On héberge notre modèle où ? En Virginie (USA) c'est moins cher, en Suède c'est plus vert.",
+      "ceo_request": "On doit choisir un Data Center. En Virginie (USA) c'est moins cher, en Suède c'est plus écolo.",
       "theory": {
-        "concept": "Intensité Carbone",
-        "definition": "L'électricité n'est pas égale partout. Le charbon émet 800g CO2/kWh, l'hydraulique 6g."
+        "concept": "Mix Énergétique (Intensité Carbone)",
+        "definition": "L'électricité n'est pas la même partout. 1 kWh au charbon émet 800g de CO2. 1 kWh hydraulique en émet 6g."
       },
       "choices": [
         {
-          "text": "Virginie (Moins cher).",
-          "feedback": "Mauvais calcul. L'électricité locale est très carbonée (Charbon/Gaz).",
-          "impact": { "innovation": 10, "co2": 30, "water": 10 }
+          "text": "Virginie (USA) - Moins cher.",
+          "feedback": "Aïe. La Virginie alimente ses serveurs au Charbon et au Gaz. Votre cloud est noir de suie.",
+          "impact": { "innovation": 10, "co2": 35, "water": 10 }
         },
         {
-          "text": "Suède (Hydroélectricité).",
-          "feedback": "Excellent. L'électricité décarbonée réduit drastiquement l'empreinte d'usage.",
+          "text": "Suède - Hydroélectricité.",
+          "feedback": "Parfait. Utiliser une énergie décarbonée (eau/vent) réduit drastiquement l'impact d'usage.",
           "impact": { "innovation": 10, "co2": 5, "water": 5 }
         }
       ]
     },
     {
       "id": 6,
-      "title": "Optimisation du Code",
-      "image": "assets/data/code.png",
-      "ceo_request": "Les développeurs veulent coder vite en Python sans optimiser. On leur laisse carte blanche ?",
+      "title": "Le Nettoyage de Printemps",
+      "image": "assets/data/storage.png",
+      "ceo_request": "On a des tera-octets de vieilles données d'utilisateurs qui ne sont plus venus depuis 5 ans. On garde ?",
       "theory": {
-        "concept": "Green Coding",
-        "definition": "Un code mal optimisé fait tourner le processeur plus longtemps, consommant plus de batterie et d'énergie."
+        "concept": "Dark Data",
+        "definition": "Les données stockées inutilement continuent de consommer de l'électricité 24h/24 sur des disques durs."
       },
       "choices": [
         {
-          "text": "Oui, le temps c'est de l'argent.",
-          "feedback": "Vision court-termiste. L'application sera lente et énergivore sur des millions de téléphones.",
-          "impact": { "innovation": 10, "co2": 20, "water": 5 }
+          "text": "On garde, ça peut servir (Data Hoarding).",
+          "feedback": "Mauvaise pratique. C'est comme chauffer une maison vide. Ça pollue pour rien.",
+          "impact": { "innovation": 0, "co2": 15, "water": 5 }
         },
         {
-          "text": "Non, exigez une optimisation.",
-          "feedback": "Correct. Le Green Coding peut réduire la consommation CPU de 30% à 50%.",
-          "impact": { "innovation": 5, "co2": 0, "water": 0 }
+          "text": "On supprime tout ce qui a > 2 ans.",
+          "feedback": "Geste d'hygiène numérique essentiel. Moins de stockage = moins de serveurs.",
+          "impact": { "innovation": 5, "co2": -10, "water": 0 }
         }
       ]
     },
     {
       "id": 7,
-      "title": "L'Assistant H24",
-      "image": "assets/data/datacenter.png",
-      "ceo_request": "Le chatbot doit-il être actif par défaut et s'ouvrir tout seul à chaque visite ?",
+      "title": "Le Fil d'Actualité",
+      "image": "assets/data/code.png",
+      "ceo_request": "Pour la page d'accueil, on fait un algorithme de recommandation ultra-poussé style TikTok ou juste un tri par date ?",
       "theory": {
-        "concept": "Design Persuasif & Rebond",
-        "definition": "Pousser à la consommation d'IA quand ce n'est pas nécessaire crée une pollution artificielle."
+        "concept": "Économie de l'Attention",
+        "definition": "Les algorithmes de recommandation nécessitent des calculs lourds permanents pour capturer l'attention."
       },
       "choices": [
         {
-          "text": "Oui, maximisons l'engagement !",
-          "feedback": "C'est pousser à la surconsommation. L'IA doit être une aide sollicitée, pas imposée.",
-          "impact": { "innovation": 15, "co2": 20, "water": 20 }
+          "text": "Algorithme IA ultra-personnalisé.",
+          "feedback": "Lourd en calcul et éthiquement discutable (addiction). L'impact serveur explose.",
+          "impact": { "innovation": 25, "co2": 30, "water": 15 }
         },
         {
-          "text": "Non, à la demande (On-demand).",
-          "feedback": "Approche responsable. On ne déclenche le coût énergétique que si l'utilisateur en a besoin.",
-          "impact": { "innovation": 5, "co2": 5, "water": 5 }
+          "text": "Tri chronologique simple.",
+          "feedback": "Sobre et efficace. Pas besoin d'IA pour afficher les nouveautés.",
+          "impact": { "innovation": 0, "co2": 5, "water": 0 }
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "title": "L'Aide aux Devoirs",
+      "image": "assets/data/inference.png",
+      "ceo_request": "On ajoute une fonction 'Maths' où l'IA résout les équations simples (ex: 24 x 12).",
+      "theory": {
+        "concept": "Le Marteau pour écraser la mouche",
+        "definition": "Utiliser un LLM (réseau de neurones) pour un calcul mathématique est 1000x moins efficace qu'une calculatrice classique."
+      },
+      "choices": [
+        {
+          "text": "Oui, utilisons GPT pour calculer.",
+          "feedback": "Ridicule. Une calculatrice standard fait ça en 0.0001 seconde sans polluer.",
+          "impact": { "innovation": 5, "co2": 20, "water": 5 }
+        },
+        {
+          "text": "Non, un script Python classique.",
+          "feedback": "C'est la bonne ingénierie. Utiliser le bon outil pour le bon usage.",
+          "impact": { "innovation": 10, "co2": 0, "water": 0 }
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "title": "Streaming Vidéo",
+      "image": "assets/data/video.png",
+      "ceo_request": "Nos tutos vidéos sont en HD (1080p). On passe tout en 4K avec Upscaling par IA ?",
+      "theory": {
+        "concept": "Poids des Données",
+        "definition": "La vidéo représente 60% du trafic mondial. Passer de HD à 4K quadruple la bande passante et l'énergie réseau."
+      },
+      "choices": [
+        {
+          "text": "Tout en 4K ! Il faut que ça brille.",
+          "feedback": "Inutile sur un écran de téléphone. Vous encombrez les réseaux 4G/5G pour rien.",
+          "impact": { "innovation": 15, "co2": 40, "water": 10 }
+        },
+        {
+          "text": "Restons en HD (suffisant).",
+          "feedback": "La sobriété, c'est définir le niveau de qualité 'suffisant' et s'y tenir.",
+          "impact": { "innovation": 0, "co2": 5, "water": 0 }
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "title": "Le Code Sale",
+      "image": "assets/data/code.png",
+      "ceo_request": "Les développeurs veulent aller vite. On leur demande d'optimiser le code ou pas ?",
+      "theory": {
+        "concept": "Green Coding",
+        "definition": "Un code mal écrit oblige le processeur du téléphone à travailler plus fort, vidant la batterie et l'énergie."
+      },
+      "choices": [
+        {
+          "text": "Pas le temps, on ship vite !",
+          "feedback": "Mauvais calcul. Votre appli va vider la batterie des utilisateurs, qui la désinstalleront.",
+          "impact": { "innovation": 10, "co2": 25, "water": 5 }
+        },
+        {
+          "text": "On prend le temps d'optimiser.",
+          "feedback": "Bravo. Le code optimisé est la forme la plus pure d'écologie numérique.",
+          "impact": { "innovation": 15, "co2": -5, "water": 0 }
         }
       ]
     }
   ],
   "conclusion": {
-    "success": "Mission Accomplie ! Vous avez trouvé l'équilibre Green IT.",
-    "failure": "Échec. Votre empreinte environnementale est insoutenable.",
-    "restart": "Nouvel Audit"
+    "success": "Félicitations ! Vous êtes un véritable architecte Green IT. Vous avez prouvé qu'on peut innover avec raison.",
+    "failure": "Alerte Rouge. Votre technologie est avancée, mais à quel prix ? La planète ne peut pas supporter votre stratégie.",
+    "restart": "Tenter une nouvelle stratégie"
   }
 }
