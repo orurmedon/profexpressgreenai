@@ -554,4 +554,208 @@ button:hover {
     padding: 1.2rem 3rem;
     font-size: 1.2rem;
     font-weight: bold;
+} 
+
+/* --- VUE SOMMAIRE (Chapter Grid) --- */
+.chapter-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.chapter-card {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-left: 5px solid transparent;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.chapter-card:hover {
+    transform: translateY(-5px);
+    border-left-color: var(--primary-green);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.chapter-number {
+    font-size: 4rem;
+    position: absolute;
+    top: -10px;
+    right: 10px;
+    color: rgba(255, 255, 255, 0.05);
+    font-weight: bold;
+}
+
+.chapter-meta {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: var(--accent-blue);
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* --- VUE LECTEUR (Lesson Content) --- */
+.lesson-header {
+    margin-bottom: 2rem;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 1rem;
+}
+
+.back-link {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 0;
+    margin-bottom: 1rem;
+    text-align: left;
+}
+.back-link:hover { color: white; text-decoration: underline; }
+
+/* Structure d'une sous-section : ZigZag ou Colonnes */
+.subsection {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr; /* Texte large, Image */
+    gap: 2rem;
+    margin-bottom: 3rem;
+    align-items: center;
+}
+
+/* Alterner l'image gauche/droite pour le dynamisme (Optionnel, ici standard) */
+
+.subsection-text h3 {
+    color: var(--primary-green);
+    font-size: 1.5rem;
+    margin-top: 0;
+}
+
+.subsection-text p {
+    line-height: 1.8; /* Lecture confortable */
+    font-size: 1.05rem;
+    color: #e0e0e0;
+}
+
+.subsection-visual {
+    height: 300px;
+    background: rgba(0,0,0,0.2);
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.subsection-visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+}
+
+.subsection-visual:hover img { transform: scale(1.05); }
+
+/* Placeholder si pas d'image */
+.img-placeholder {
+    color: rgba(255,255,255,0.3);
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    border: 2px dashed rgba(255,255,255,0.2);
+    padding: 2rem;
+    border-radius: 10px;
+}
+
+/* Footer de navigation */
+.lesson-footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.next-chapter-btn {
+    background: var(--primary-green);
+    color: white;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 50px; /* Bouton pilule */
+    cursor: pointer;
+    transition: transform 0.2s;
+    box-shadow: 0 5px 15px rgba(0, 176, 155, 0.4);
+}
+
+.next-chapter-btn:hover {
+    transform: translateX(5px);
+}
+
+.finish-btn {
+    background: linear-gradient(90deg, #f1c40f, #e67e22);
+    box-shadow: 0 5px 15px rgba(230, 126, 34, 0.4);
+}
+
+/* Responsive Mobile */
+@media (max-width: 900px) {
+    .subsection {
+        grid-template-columns: 1fr; /* Image passe sous le texte */
+    }
+    .subsection-visual {
+        order: -1; /* Image au dessus du texte sur mobile ? ou laisser en bas */
+        height: 200px;
+    }
+} 
+/* --- STYLE DU CONTENU MARKDOWN --- */
+.md-content {
+    line-height: 1.8;
+    color: #e0e0e0;
+    font-size: 1.05rem;
+}
+
+/* Le Markdown génère des paragraphes */
+.md-content p {
+    margin-bottom: 1.5rem;
+}
+
+/* Listes à puces */
+.md-content ul {
+    padding-left: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.md-content li {
+    margin-bottom: 0.5rem;
+    position: relative;
+}
+
+.md-content li::marker {
+    color: var(--primary-green); /* Puces vertes */
+}
+
+/* Gras */
+.md-content strong {
+    color: white;
+    font-weight: 700;
+}
+
+/* Italique (souvent utilisé pour les notes) */
+.md-content em {
+    color: var(--text-muted);
+    font-style: italic;
+    font-size: 0.9em;
+}
+
+/* Liens éventuels */
+.md-content a {
+    color: var(--primary-green);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--primary-green);
+}
+
+.md-content a:hover {
+    color: var(--accent-blue);
 }

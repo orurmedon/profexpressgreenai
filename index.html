@@ -27,27 +27,22 @@
     </aside>
 
     <main>
-        
         <section id="view-home" class="view-section active">
             <div class="glass-card hero-card fade-in">
                 <h1>Bienvenue à la GreenGen Academy</h1>
                 <p>Maîtrisez l'impact environnemental du numérique en 3 étapes.</p>
-                
                 <div class="menu-grid">
                     <div class="menu-item" onclick="router('quizz')">
                         <div class="icon">📝</div>
                         <h3>1. Le Test</h3>
-                        <p>Évaluez vos connaissances actuelles.</p>
                     </div>
                     <div class="menu-item" onclick="router('lesson')">
                         <div class="icon">📚</div>
                         <h3>2. Le Cours</h3>
-                        <p>Comprenez les mécanismes cachés.</p>
                     </div>
                     <div class="menu-item" onclick="router('game')">
                         <div class="icon">🎮</div>
                         <h3>3. La Mission</h3>
-                        <p>Prenez les commandes d'une Start-up.</p>
                     </div>
                 </div>
             </div>
@@ -66,9 +61,17 @@
         <section id="view-game" class="view-section">
             <div id="app"></div> 
         </section>
-
     </main>
 
+    <div id="feedback-modal" class="modal-overlay">
+        <div class="modal-content">
+            <span id="modal-icon" class="modal-icon"></span>
+            <h2 id="modal-title">Analyse</h2>
+            <p id="modal-text"></p>
+            <div id="modal-impact" class="impact-row"></div>
+            <button onclick="closeModalAndNext()" style="width:100%">Continuer</button>
+        </div>
+    </div>
     <button id="chat-toggle">💬</button>
     <div id="chatbot-widget">
         <div class="chat-header"><span>Assistant GreenIT</span><span onclick="toggleChat()" style="cursor:pointer">✖</span></div>
@@ -76,9 +79,12 @@
         <div class="chat-input-area"><input type="text" id="chat-input"><button onclick="sendMessage()">➤</button></div>
     </div>
 
+    
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="scripts/quizz.js"></script>
     <script src="scripts/lesson.js"></script>
     <script src="scripts/app.js"></script>
     <script src="scripts/chatbot.js"></script>
-    <script src="scripts/main.js"></script> </body>
+    <script src="scripts/main.js"></script>
+</body>
 </html>
